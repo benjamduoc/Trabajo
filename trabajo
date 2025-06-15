@@ -1,0 +1,52 @@
+def mostrar_menu():
+    print("\n--- MENÚ ---")
+    print("1. Ver tareas")
+    print("2. Agregar tarea")
+    print("3. Eliminar tarea")
+    print("4. Salir")
+
+def mostrar_tareas(lista):
+    if len(lista) == 0:
+        print("No hay tareas.")
+    else:
+        print("Tareas:")
+        i = 0
+        while i < len(lista):
+            print(f"{i + 1}. {lista[i]}")
+            i += 1
+
+tareas = []
+
+while True:
+    mostrar_menu()
+    try:
+        opcion = int(input("Elige una opción (1-4): "))
+    except ValueError:
+        print("ingresa un número válido.")
+        continue
+
+    if opcion == 1:
+        mostrar_tareas(tareas)
+    elif opcion == 2:
+        nueva = input("Escribe la nueva tarea: ")
+        tareas.append(nueva)
+        print("Tarea agregada.")
+    elif opcion == 3:
+        if len(tareas) == 0:
+            print("No hay tareas para eliminar.")
+            continue
+        try:
+            mostrar_tareas(tareas)
+            index = int(input("Número de tarea a eliminar: ")) - 1
+            if index < 0 or index >= len(tareas):
+                print("Número fuera de rango.")
+            else:
+                tareas.pop(index)
+                print("Tarea eliminada.")
+        except ValueError:
+            print("Ingresa un número válido.")
+    elif opcion == 4:
+        print("Saliendo del programa...")
+        break
+    else:
+        print("Opción no válida. Intenta de nuevo.")
